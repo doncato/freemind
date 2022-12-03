@@ -1,3 +1,6 @@
+mod webserver;
+pub use crate::webserver::handler;
+
 use chrono::{self, Local};
 use clap::{self, Arg, Command};
 use env_logger::Builder;
@@ -79,8 +82,8 @@ fn main() {
     });
 
     handler::run(state).unwrap_or_else(|err| {
-        log::error!("Failed to start ELAYNE server");
-        panic!("{}", err);
+        log::error!("{}", err);
+        panic!("Failed to start");
     });
     log::info!("Stopped freemind server");
 }
